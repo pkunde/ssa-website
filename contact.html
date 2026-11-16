@@ -25,7 +25,18 @@
 <div class="contact-item"><strong>WhatsApp</strong><a href="https://wa.me/918074463250" target="_blank" rel="noopener">Message us on WhatsApp →</a></div>
 <p class="form-note">When contacting us, mention the service you need and the relevant financial year or tax period, if applicable.</p></div>
 <div class="card form-card"><div class="kicker">Send an enquiry</div><h2>Tell us what you need</h2><p class="muted">Complete the details below. Your email application will open with the enquiry pre-filled so you can review and send it.</p>
-<form id="enquiry-form"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required placeholder="Enter your name"><label for="phone">Phone number</label><input id="phone" name="phone" autocomplete="tel" required placeholder="Enter your contact number"><label for="service">Service required</label><select id="service" name="service" required><option value="">Select a service</option><option>GST Services</option><option>Income Tax Return</option><option>TDS Compliance</option><option>Accounting &amp; Bookkeeping</option><option>Business Registration</option><option>Other enquiry</option></select><label for="message">How can we help?</label><textarea id="message" name="message" required placeholder="Briefly describe your requirement"></textarea>
+<form id="enquiry-form"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required placeholder="Enter your name"><label for="phone">Phone number</label><input
+  id="phone"
+  name="phone"
+  type="tel"
+  inputmode="numeric"
+  autocomplete="tel-national"
+  pattern="[6-9][0-9]{9}"
+  minlength="10"
+  maxlength="10"
+  required
+  title="Enter a valid 10-digit Indian mobile number starting with 6, 7, 8 or 9"
+  placeholder="Enter 10-digit mobile number"><label for="service">Service required</label><select id="service" name="service" required><option value="">Select a service</option><option>GST Services</option><option>Income Tax Return</option><option>TDS Compliance</option><option>Accounting &amp; Bookkeeping</option><option>Business Registration</option><option>Other enquiry</option></select><label for="message">How can we help?</label><textarea id="message" name="message" required placeholder="Briefly describe your requirement"></textarea>
 
 <div class="cf-turnstile"
      data-sitekey="0x4AAAAAAGDOEPNu-Ngisfr_"
