@@ -12,14 +12,14 @@ if (toggle && nav) {
   });
 }
 
-// Highlight the current page in the navigation
+// Highlight current page
 document.querySelectorAll('.nav a').forEach(a => {
   if (a.pathname.split('/').pop() === location.pathname.split('/').pop()) {
     a.classList.add('active');
   }
 });
 
-// Website enquiry form
+// Contact enquiry form
 const form = document.querySelector('#enquiry-form');
 
 if (form) {
@@ -27,7 +27,7 @@ if (form) {
 
   if (intro) {
     intro.textContent =
-      'Complete the details below. Your enquiry will be sent directly to our team without opening an email application.';
+      'Complete the details below. Your enquiry will be sent directly to our team.';
   }
 
   const submitButton = form.querySelector('button[type="submit"]');
@@ -36,7 +36,6 @@ if (form) {
     submitButton.textContent = 'Send enquiry →';
   }
 
-  // Confirmation message
   const status = document.createElement('p');
   status.className = 'form-note';
   status.setAttribute('role', 'status');
@@ -63,13 +62,23 @@ if (form) {
     if (form.dataset.submitting === 'true') return;
     if (!form.reportValidity()) return;
 
+    // Require a completed Cloudflare security check.
+    const tokenField = form.querySelector(
+      '[name="cf-turnstile-response"]'
+    );
+
+    if (!tokenField || !tokenField.value.trim()) {
+      status.textContent =
+        'Please complete the security check before sending your enquiry.';
+      return;
+    }
+
     form.dataset.submitting = 'true';
 
     if (submitButton) submitButton.disabled = true;
 
     status.textContent = 'Sending your enquiry...';
 
-    // Send form fields in standard form-encoded format.
     const data = new URLSearchParams();
 
     new FormData(form).forEach((value, key) => {
@@ -85,10 +94,10 @@ if (form) {
         body: data
       });
 
-      status.textContent =
-        'Thank you! Your enquiry has been submitted. Our team will contact you soon.';
-
       form.reset();
+
+      status.textContent =
+        'Thank you! Your enquiry has been submitted for processing. Our team will contact you soon. If you do not hear from us, please call 80744 63250.';
 
     } catch (error) {
       console.error('Enquiry submission failed:', error);
@@ -97,6 +106,11 @@ if (form) {
         'We could not submit your enquiry. Please try again or contact us by phone or email.';
 
     } finally {
+      // Refresh the Turnstile widget for a future submission.
+      if (window.turnstile) {
+        window.turnstile.reset();
+      }
+
       form.dataset.submitting = 'false';
 
       if (submitButton) submitButton.disabled = false;
