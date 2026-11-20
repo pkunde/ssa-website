@@ -1,5 +1,5 @@
 
-const ENQUIRY_ENDPOINT = "https://script.google.com/macros/s/AKfycbzbl3-NTvRsSHAb3jKyEld7UtLrSL3LIr1a-TI2uvlRzOaq5ja5JGraIIimBfeIJqXx/exec";
+const ENQUIRY_ENDPOINT = "https://script.google.com/macros/s/AKfycbxiivrynxVVLyAI9YVNVlQ9RtGAUaFYR02rL5LMncredS840NVj9zKoUolzrQAEoKtDEQ/exec";
 
 // Mobile navigation
 const toggle = document.querySelector('.menu-toggle');
